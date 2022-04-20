@@ -1,0 +1,12 @@
+/app/app
+/app/bootstrap
+/app/config
+/app/database
+/app/nova-components
+/app/public
+/app/resources
+/app/routes
+/app/storage
+/app/tests
+
+/app/src

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# per-project entrypoint scripting
+if [[ -n "${ENTRYPOINT_SCRIPT}" && -x "${ENTRYPOINT_SCRIPT}" ]]; then
+  source "${ENTRYPOINT_SCRIPT}"
+fi
+
+if [[ "$APP_ENV" == "local" ]]; then
+  ln -sf /etc/php/opcache-blacklist /etc/php/opcache-blacklist.enabled
+
+  if [[ -x "/app/artisan" && -f "/app/vendor/autoload.php" ]]; then
+    # ensure laravel config values are never cached locally
+    artisan config:clear -q
+  fi
+fi
+
+# run-services is a meta-command, we're still going to run that through my_init
+# but letting my_init handle the daemonization for us
+if [[ "$1" == "run-services" || "$1" == "/usr/local/bin/run-services" ]]; then
+  source /usr/local/bin/run-services $2
+  exec $MY_INIT_COMMAND
+else
+  exec $MY_INIT_COMMAND -- "$@" 2>&1
+fi

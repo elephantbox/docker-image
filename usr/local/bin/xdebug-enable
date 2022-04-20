@@ -1,0 +1,12 @@
+#!/bin/bash
+
+phpenmod xdebug
+
+# restart php fpm
+if command -v sv &> /dev/null
+then
+  if [ -e /etc/service/php-fpm ]; then
+    echo "Restarting php-fpm...  "
+    sv restart php-fpm
+  fi
+fi
