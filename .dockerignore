@@ -3,3 +3,5 @@ Dockerfile
 .editorconfig
 .gitignore
 readme.md
+.github
+.git
