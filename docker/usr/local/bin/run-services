@@ -2,7 +2,7 @@
 
 # typically one or more of cron, nginx, php-fpm (comma separated for multiple)
 echo "$1" | tr ',' '\n' | while read SERVICE; do
-  SERVICE_FILE="/etc/service/$SERVICE/down"
+  SERVICE_FILE="/etc/runit/runsvdir/default/$SERVICE/down"
 
   if [[ -f "$SERVICE_FILE" ]]; then
     rm "$SERVICE_FILE"

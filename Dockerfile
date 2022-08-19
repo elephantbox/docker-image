@@ -20,7 +20,7 @@ ENV APP_NAME="elephantbox-app" \
     PHP_FPM_CONF_PM="dynamic" \
     PHP_FPM_CONF_PM_MAX_CHILDREN="5"
 
-RUN curl -sL https://deb.nodesource.com/setup_17.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-add-repository -y ppa:ondrej/php \
@@ -74,9 +74,9 @@ RUN curl -sL https://deb.nodesource.com/setup_17.x | bash - \
 
 EXPOSE 80
 
-COPY . /
+COPY docker/ /
 
-ENTRYPOINT ["entrypoint"]
+ENTRYPOINT ["/usr/local/bin/entrypoint"]
 
 CMD ["/bin/true"]
 
