@@ -4,6 +4,5 @@ root = true
 indent_style = space
 indent_size = 4
 
-[docker-compose{,.*}.{yaml,yml}]
-indent_style = space
+[*.{yaml,yml}]
 indent_size = 2
