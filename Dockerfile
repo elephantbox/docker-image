@@ -1,4 +1,4 @@
-FROM phusion/baseimage:focal-1.2.0
+FROM phusion/baseimage:jammy-1.0.0
 
 LABEL maintainer="Ralph Schindler"
 
@@ -48,7 +48,6 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
         php8.1-imap \
         php8.1-intl \
         php8.1-ldap \
-        php8.1-lz4 \
         php8.1-mbstring \
         php8.1-mysql \
         php8.1-pgsql \
