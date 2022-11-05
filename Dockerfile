@@ -54,6 +54,7 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
         php8.1-pgsql \
         php8.1-protobuf \
         php8.1-pspell \
+        php8.1-raphf \
         php8.1-readline \
         php8.1-redis \
         php8.1-soap \
