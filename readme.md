@@ -1,18 +1,6 @@
 # Elephantbox: Production Grade PHP + Node Based On Phusion
 
-Elephantbox is a Docker image for running containerized PHP applications. It follows the
-Docker philosophy of organizing an application as **logical services** and as such, the `web`
-image will run nginx + php-fpm to expose your web application. Node JS is available for the
-purpose of building web assets for your PHP applications.
-
-Elephantbox in either a `docker-compose`-able service image or a `Dockerfile` baseimage:
-
-- a development time runnable service image
-- a production time image
-- a parent / baseimage
-
-Elephantbox is built on [phusion](https://github.com/phusion/baseimage-docker) and uses
-apt-get to install nginx (ubuntu stock) and Ondřej Surý's PHP build.
+See the main readme here: https://github.com/elephantbox
 
 ## Quick Install
 
@@ -35,18 +23,10 @@ services:
       - .:/app
 ```
 
-Then, start the project and visit it at http://localhost:8000
+Then, start the project:
 
 ```
 docker-compose up -d
 ```
 
-## Documentation To Be Written
-
-- using xdebug
-- command line helper
-- cron jobs
-- entering the shell
-- using a different `my_init` command
-- run-services
-- transition to scalable baseimage (k8s deployments)
+Finally visit it at http://localhost:8000
