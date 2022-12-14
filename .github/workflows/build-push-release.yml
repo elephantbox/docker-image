@@ -32,4 +32,7 @@ jobs:
         run: echo ${{ steps.buildx.outputs.platforms }}
       -
         name: Docker Build & Push
-        run: "docker buildx build --push --platform linux/amd64,linux/arm64 -t elephantbox/elephantbox:${GITHUB_REF##*/} -t elephantbox/elephantbox:${${GITHUB_REF##*/}%-*}-latest ."
+        run: |
+            FULL_TAG=${GITHUB_REF##*/}
+            LATEST_TAG=${FULL_TAG%-*}-latest
+            docker buildx build --push --platform linux/amd64,linux/arm64 -t elephantbox/elephantbox:$FULL_TAG -t elephantbox/elephantbox:$LATEST_TAG .
