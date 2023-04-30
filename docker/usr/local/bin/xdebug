@@ -1,0 +1,28 @@
+#!/bin/bash
+
+case $1 in
+
+  on)
+    echo "enabling xdebug, using always on settings, restarting php-fpm"
+    cp /etc/php/8.2/mods-available/xdebug/xdebug-debug-on.ini /etc/php/8.2/mods-available/xdebug.ini
+    phpenmod xdebug
+    sv restart php-fpm
+    ;;
+
+  off)
+    echo "disabling xdebug, restarting php-fpm"
+    phpdismod xdebug
+    sv restart php-fpm
+    ;;
+
+  trigger)
+    echo "enabling xdebug, using trigger settings, restarting php-fpm"
+    cp /etc/php/8.2/mods-available/xdebug/xdebug-debug-trigger.ini /etc/php/8.2/mods-available/xdebug.ini
+    phpenmod xdebug
+    sv restart php-fpm
+    ;;
+
+  *)
+    echo "must be one of on, off, or trigger"
+    ;;
+esac

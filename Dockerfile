@@ -1,3 +1,21 @@
+FROM phusion/baseimage:jammy-1.0.1 AS phpext
+
+RUN install_clean ca-certificates \
+    && apt-add-repository -y ppa:ondrej/php \
+    && install_clean \
+        pkg-config \
+        php8.2-dev \
+        git \
+        make \
+        unzip
+
+COPY ./docker/usr/local/src /usr/local/src
+
+RUN /usr/local/src/install-php-extensions-from-source.sh
+
+##
+## Image Start
+##
 FROM phusion/baseimage:jammy-1.0.1
 
 LABEL maintainer="Ralph Schindler"
@@ -71,6 +89,11 @@ RUN curl -sL https://deb.nodesource.com/setup_19.x | bash - \
         yarn \
     && rm /etc/php/8.2/*/conf.d/20-xdebug.ini \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY --from=phpext /usr/lib/php/20220829/dio.so /usr/lib/php/20220829/dio.so
+
+# disable syslog in phusion
+RUN chmod 644 /etc/my_init.d/10_syslog-ng.init
 
 EXPOSE 80
 
