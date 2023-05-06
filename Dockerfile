@@ -45,6 +45,7 @@ RUN curl -sL https://deb.nodesource.com/setup_19.x | bash - \
     && install_clean \
         git \
         libpng-dev \
+        imagemagick \
         mysql-client \
         nano \
         nginx \
